@@ -1,0 +1,7 @@
+{
+  "name": "openclaw-app",
+  "private": true,
+  "dependencies": {
+    "openclaw": "2026.8.2"
+  }
+}

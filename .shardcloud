@@ -1,0 +1,6 @@
+DISPLAY_NAME=OpenClaw
+DESCRIPTION=Personal AI agent gateway — connects one or more model providers to messaging channels (WhatsApp, Telegram, Discord, Slack, and more) through a single control plane.
+MEMORY=1024
+VERSION=latest
+LANGUAGE=node
+CUSTOM_COMMAND=sh start.sh
