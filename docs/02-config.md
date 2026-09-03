@@ -13,6 +13,7 @@ localmente. Antes de iniciar o app pela primeira vez, preencha:
 | ------------------------ | -------------------------------------------------------------------------- |
 | `OPENAI_API_KEY`         | Chave de API da OpenAI, usada no onboarding automático                    |
 | `OPENCLAW_GATEWAY_TOKEN` | Token exigido para se conectar ao Gateway — **troque o valor padrão, trate como senha de root** |
+| `PUBLIC_ORIGIN`          | Já vem como `{DOMAIN}` — preenchido automaticamente com a URL pública do app. Necessário para o Gateway aceitar conexões do navegador nesse domínio |
 
 Se preferir outro provedor de modelo (Anthropic, Google, etc.), edite o
 `CUSTOM_COMMAND` do app para trocar `--auth-choice openai-api-key` pela opção

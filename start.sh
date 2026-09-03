@@ -23,4 +23,14 @@ npx openclaw@2026.8.2 config set gateway.trustedProxies \
   '["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","100.64.0.0/10","127.0.0.1","::1"]' \
   --strict-json
 
+# The Gateway only auto-allows localhost/127.0.0.1 origins matching its own
+# bound port — a browser opening the Control UI at the app's real public
+# origin gets rejected ("Browser origin not allowed") until that origin is
+# explicitly trusted. PUBLIC_ORIGIN is resolved from the {DOMAIN} placeholder
+# at deploy time (see the app's env vars) to this app's actual URL.
+if [ -n "$PUBLIC_ORIGIN" ]; then
+  npx openclaw@2026.8.2 config set gateway.controlUi.allowedOrigins \
+    "[\"$PUBLIC_ORIGIN\"]" --strict-json
+fi
+
 exec npx openclaw@2026.8.2 gateway --bind lan --port 80 --auth token
