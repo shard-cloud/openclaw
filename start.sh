@@ -14,4 +14,13 @@ if [ ! -f "$OPENCLAW_HOME/.openclaw/openclaw.json" ]; then
     --skip-channels --no-install-daemon
 fi
 
+# --bind lan puts the gateway behind whatever reverse proxy fronts port 80,
+# so it refuses to attribute client IPs (proxy_attribution_required) until
+# it's told which immediate peer to trust. Private/CGNAT ranges cover common
+# proxy placements without needing the exact proxy IP. Idempotent — safe to
+# run every start, not just the first one.
+npx openclaw@2026.8.2 config set gateway.trustedProxies \
+  '["10.0.0.0/8","172.16.0.0/12","192.168.0.0/16","100.64.0.0/10","127.0.0.1","::1"]' \
+  --strict-json
+
 exec npx openclaw@2026.8.2 gateway --bind lan --port 80 --auth token
